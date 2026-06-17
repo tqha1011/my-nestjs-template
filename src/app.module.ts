@@ -3,8 +3,10 @@ import {
   Module,
   NestModule,
   RequestMethod,
+  ValidationPipe,
 } from '@nestjs/common';
 import { ConfigModule } from '@nestjs/config';
+import { APP_PIPE } from '@nestjs/core';
 import { LoggerMiddleware } from './shared/common/logger.middleware';
 import { PrismaModule } from './shared/infrastructure/database/prisma.module';
 
@@ -15,6 +17,12 @@ import { PrismaModule } from './shared/infrastructure/database/prisma.module';
     }),
     PrismaModule,
     ConfigModule,
+  ],
+  providers: [
+    {
+      provide: APP_PIPE,
+      useClass: ValidationPipe,
+    },
   ],
 })
 export class AppModule implements NestModule {
