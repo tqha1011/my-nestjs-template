@@ -87,6 +87,32 @@ docs: update module guide
 chore: setup husky
 ```
 
+## GitHub
+
+Thư mục `.github` đang cấu hình review ownership và CI cho repo.
+
+```txt
+.github/
+  CODEOWNERS
+  workflows/
+    backend_ci.yml
+```
+
+`CODEOWNERS` khai báo owner mặc định của repo. Khi mở pull request, GitHub sẽ tự gợi ý reviewer theo file này.
+
+Workflow `Backend CI` chạy khi push hoặc mở pull request vào nhánh `develop` và `main`.
+
+Các bước CI hiện có:
+
+```txt
+checkout source code
+setup Node.js 24
+npm ci
+npx prisma generate
+npm run lint
+npm run build
+```
+
 ## Cấu trúc chính
 
 ```txt
