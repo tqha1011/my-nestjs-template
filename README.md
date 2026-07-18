@@ -12,6 +12,8 @@ Template NestJS gọn để bắt đầu API backend với Prisma, Swagger, JWT 
 - HTTP logger middleware cho route `api/*`
 - Swagger UI tại `/docs`
 - JWT guard + `@User()` decorator
+- `RolesGuard` + `@Roles()` decorator cho phân quyền theo role
+- `AppError`/`ErrorCode` + mapper sang HTTP exception cho domain error
 - `bcrypt` cho password hashing
 - ESLint + Prettier
 - Husky hooks
@@ -123,9 +125,14 @@ src/
     MODULE.README.md
   shared/
     common/
+      app-error.mapper.ts
+      errorCode.ts
       exceptions.filter.ts
       jwt.guard.ts
+      jwt.payload.interface.ts
       logger.middleware.ts
+      roles.decorator.ts
+      roles.guard.ts
       user.decorator.ts
     infrastructure/
       database/
